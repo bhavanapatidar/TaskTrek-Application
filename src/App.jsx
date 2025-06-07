@@ -1,14 +1,20 @@
-import React from 'react'
+import React, {useState} from 'react'
 import './App.css'
+import TaskForm from './components/TaskForm'
+import TaskColumn from './components/TaskColumn.jsx'
+import todoIcon from './assets/direct-hit.png'
+import inprogresIcon from './assets/glowing-star.png'
+import doneIcon from './assets/check-mark-button.png'
 
 const App = () => {
+  const [tasks, setTasks] = useState([])
   return (
-    <div>
-      <header className='app_header'>header Section</header>
+    <div className='app'>
+      <TaskForm setTasks={setTasks}/>
       <main className='app_main'>
-       <section className='task_column'>Section 1</section>
-      <section className='task_column'>Section 2</section>
-      <section className='task_column'>Section 3</section>
+        <TaskColumn taskColumnName = "To Do" icon = {todoIcon} tasks = {tasks} status = "todo"/>
+        <TaskColumn taskColumnName = "In Progress" icon = {inprogresIcon} tasks = {tasks} status = "in-progress"/> 
+        <TaskColumn taskColumnName = "Done" icon = {doneIcon} tasks = {tasks} status = "done"/>    
       </main>
     </div>
   )
