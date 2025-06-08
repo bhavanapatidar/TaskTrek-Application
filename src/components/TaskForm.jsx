@@ -2,29 +2,30 @@ import React ,{useState} from 'react'
 import './TaskForm.css'
 import Tag from './Tag.jsx'
 
-const TaskForm = () => {
+const TaskForm = ({setTasks}) => {
   const [taskData, setTaskData] = useState({
     task : '',
     status: 'todo',
-    tag: []
+    tags: []
   });
 
   const checkTag = (tag) => {
-    return taskData.tag.some(item => item === tag);
+    return taskData.tags.some(item => item === tag);
   }
 
   const selectTag = (tag) => {
-    if (taskData.tag.some(item => item === tag)) {
-      const filteredTags = taskData.tag.filter(item => item !== tag);
-      setTaskData((prevData) => ({
-        ...prevData,
-        tag: filteredTags,
-      }));
+    if (taskData.tags.some(item => item === tag)) {
+      const filteredTags = taskData.tags.filter(item => item !== tag);
+      setTaskData(prevData => {
+      return{  ...prevData,
+        tags: filteredTags}
+      });
   }else {
-    setTaskData((prevData) => ({
+    setTaskData(prevData => {
+      return {
       ...prevData,
-      tag: [...prevData.tag, tag],
-    }));
+      tags: [...prevData.tags, tag],}
+    });
   }
 }
 
@@ -39,6 +40,9 @@ const TaskForm = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     console.log('Task submitted:', taskData);
+    setTasks((prevTasks) => {
+      return [...prevTasks, taskData];
+    })
   }
   // const [task, setTask] = useState('');
   // const[status, setStatus] = useState('todo');
