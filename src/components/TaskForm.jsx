@@ -42,7 +42,12 @@ const TaskForm = ({setTasks}) => {
     console.log('Task submitted:', taskData);
     setTasks((prevTasks) => {
       return [...prevTasks, taskData];
-    })
+    });
+    setTaskData({
+      task: '',
+      status: 'todo',
+      tags: []
+    });
   }
   // const [task, setTask] = useState('');
   // const[status, setStatus] = useState('todo');
@@ -57,6 +62,7 @@ const TaskForm = ({setTasks}) => {
     <form onSubmit={handleSubmit} className='task_form'>
       <input type="text" 
              name='task'
+              value={taskData.task}
              className='task_input'
              placeholder='Enter your task'
              onChange={handleChange}
@@ -72,6 +78,7 @@ const TaskForm = ({setTasks}) => {
         <div style={{ display: "flex", alignItems: "center" }}>
           <select 
                   name='status'
+                  value={taskData.status}
                   className='task_status'
                   onChange={handleChange}
           >
