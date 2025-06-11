@@ -4,10 +4,10 @@ import './Tag.jsx'
 import Tag from './Tag.jsx'
 import deleteIcon from '../assets/delete.png'
 
-const TaskCard = ({taskColumnName, tags = [], handleDelete, index,setActiveCard}) => {
+const TaskCard = ({title, tags = [], handleDelete, index,setActiveCard}) => {
   return (
     <article className='task-card' draggable onDragStart={()=> setActiveCard(index)} onDragEnd={() => setActiveCard(null)}>
-        <p className='task_text'> {taskColumnName}</p>
+        <p className='task_text'> {title}</p>
         <div className='task_card_bottom_line'>
             <div className='task_card_tags'>
                 {tags.map((tag, index) => 
